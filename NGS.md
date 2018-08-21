@@ -36,15 +36,15 @@
 	
 ## <a id="LO1">1 - The High Throughput Sequencing Workflow</a>
 
-[Sanger sequencing](https://en.wikipedia.org/wiki/Sanger_sequencing) brought about a technological revolution, as it allowed to directly read DNA molecules with relative ease and affordability. The [Human Genome Project](https://en.wikipedia.org/wiki/Human_Genome_Project) motivated further progress, leading to automated DNA-sequencing machines capable of sequencing up to 384 samples in a single batch using capillary electrophoresis. 
-
-![NGS Workflow](images/NGSworkflow.jpg)
+[Sanger sequencing](https://en.wikipedia.org/wiki/Sanger_sequencing) brought about a technological revolution, as it allowed to directly read DNA molecules with relative ease and affordability. The [Human Genome Project](https://en.wikipedia.org/wiki/Human_Genome_Project) motivated further progress, leading to automated DNA-sequencing machines capable of sequencing up to 384 samples in a single batch using capillary electrophoresis. Further advances enabled the development of high throughput sequencing (HTS), also known as next generation sequencing (NGS) platforms.
 
 At the moment, the high throughput sequencing technology most often used (by far) is Illumina. Similarly to the Sanger method, it is also based on the addition of nucleotides specifically modified to block DNA strand elongation, where each nucleotide is marked with a different color. Unlike the Sanger method, where a single DNA molecule is "read" at a time, modern illumina machines allow reading up to millions of DNA molecules simultaneously.  
 
 The following links are a good source of information regarding this sequencing technology:
 * [Illumina Sequencing by Synthesis](https://www.youtube.com/watch?&v=fCd6B5HRaZ8).
 * [Elaine Mardis talk on NGS](https://www.youtube.com/watch?v=v1DbcJD4Ry0).
+
+![NGS Workflow](images/NGSworkflow.jpg)
 
 **QUESTION**: Can you broadly describe commmon steps in most high throughput sequencing workflows?
 <details><summary>Click Here to see the answer</summary><p>
