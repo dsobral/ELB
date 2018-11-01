@@ -256,16 +256,18 @@ As you may have noticed before, reads tend to lose quality towards their end, wh
 **QUESTION**: Did you remove all lower quality bases from the read? What other strategies you can imagine to filter your reads?
 <details><summary>Click Here to see the answer</summary>
 
-	* No. There are still low quality bases in the read (NOTE: this does not mean the base is wrong, just that it is more likely to be wrong). 
+* No. There are still low quality bases in the read (NOTE: this does not mean the base is wrong, just that it is more likely to be wrong). 
 	
-	* Instead of looking only at the last base, one can look at the mean quality of the k (eg. k=4) last bases to decide if a base should be removed or not. Another alternative that is often used is to find the longest continuous stretch of bases with a quality above a certain value.
+* Instead of looking only at the last base, one can look at the mean quality of the k (eg. k=4) last bases to decide if a base should be removed or not. Another alternative that is often used is to find the longest continuous stretch of bases with a quality above a certain value.
 	
 </details>
 <br/>
 
 **QUESTION**: Can you remove bases in the middle of reads? Why?
 <details><summary>Click Here to see the answer</summary>
-	**NO!** Because you would be making artificial deletions in the sequence.
+	
+**NO!** Because you would be making artificial deletions in the sequence.
+
 </details>
 <br/>
 	
