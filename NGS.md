@@ -170,7 +170,7 @@ Other plots indicate biases in nucleotidic content of reads, either globally (su
 
 **NOTE**: Given the size of fastq files (usually in the order of Gb), they are most frequently compressed as fastq.gz files. In fact, most tools (such as FastQC) work directly with fastq.gz to reduce space.
 
-**TASK**: Open a terminal. type 'fastqc' and press enter. The graphical interface of FastQC should appear. Open the file MiSeq_76bp.fastq.gz inside of the folder fastq_examples. Look at the different plots you obtained. Next, open the file MiSeq_250bp.fastq.gz.
+**TASK**: Open a terminal. type ```fastqc``` and press enter. The graphical interface of FastQC should appear. Open the file MiSeq_76bp.fastq.gz inside of the folder fastq_examples. Look at the different plots you obtained. Next, open the file MiSeq_250bp.fastq.gz.
 
 **QUESTION**: What information is in a FastQC report?
 <details><summary>Click Here to see the answer</summary>
@@ -203,7 +203,7 @@ The MiSeq_250bp fastq file contains 10000 reads of 250bp, while the MiSeq_76bp c
 </details>
 <br/>
 
-**TASK**: Insider the folder fastq_examples, you can see fastq files from differente sequencing technologies or applications. In a terminal window, go to the folder fastq_examples. Type 'fastqc *.fastq.gz' and press enter. Inside the folder, you should now see a series of html files with FastQC reports of each of the fastq files. You can open them with the web browser by clicking on them with the mouse, or by running 'firefox *.html'.
+**TASK**: Insider the folder fastq_examples, you can see fastq files from differente sequencing technologies or applications. In a terminal window, go to the folder fastq_examples. Type ```fastqc *.fastq.gz``` and press enter. Inside the folder, you should now see a series of html files with FastQC reports of each of the fastq files. You can open them with the web browser by clicking on them with the mouse, or by running ```firefox *.html```.
 
 **QUESTION**: Can you see differences between the different sequencing technologies?
 <details><summary>Click Here to see the answer</summary>
@@ -273,7 +273,7 @@ As you may have noticed before, reads tend to lose quality towards their end, wh
 	
 Like you have FastQC to automatically produce plots from fastq files, you also have software to filter low quality bases from fastq files. [Seqtk](https://github.com/lh3/seqtk) is a very simple tool that you can use to perform this filtering. 
 
-**TASK**: In a terminal, go to folder fastq_examples. Type 'seqtk trimfq -q 0.01 MiSeq_250bp.fastq.gz > MiSeq_250bp.trimmed.fastq'. 
+**TASK**: In a terminal, go to folder fastq_examples. Type ```seqtk trimfq -q 0.01 MiSeq_250bp.fastq.gz > MiSeq_250bp.trimmed.fastq```. 
 
 **QUESTION**: What is this command doing? Use fastQC to check the new fastq file that is created by this command. 
 <details><summary>Click Here to see the answer</summary>
@@ -388,7 +388,7 @@ After obtaining millions of short reads, we need to align them to a (sometimes l
 
 **NOTE:** Aligners based on the burrows-wheeler transform makes some assumptions to speed up the alignment process. Namely, they require the reference genome to be very similar to your sequenced DNA (less than 2-5% differences). Moreover, they are not optimal, and therefore sometimes make some mistakes.
 
-**TASK** The first step of a burrows-wheeler aligner is to make an index from the fasta of the reference genome. open a terminal window, go to the folder resequencing (using the 'cd' command) and type 'bwa index NC_000913.3_MG1655.fasta'. Now, we can do the alignment against the created database. Next, type 'bwa mem NC_000913.3_MG1655.fasta SRR1030347_1.fastq.interval.fq SRR1030347_2.fastq.interval.fq > SRR1030347.alignment.sam'. 
+**TASK** The first step of a burrows-wheeler aligner is to make an index from the fasta of the reference genome. open a terminal window, go to the folder resequencing (using the 'cd' command) and type ```bwa index NC_000913.3_MG1655.fasta```. Now, we can do the alignment against the created database. Next, type ```bwa mem NC_000913.3_MG1655.fasta SRR1030347_1.fastq.interval.fq SRR1030347_2.fastq.interval.fq > SRR1030347.alignment.sam```. 
 
 **NOTE:** You may have noticed that we used paired fastq files in this alignment. The aligners can use the pairing information to improve the alignments, as we will see later.
 
@@ -399,7 +399,7 @@ To store millions of alignments, researchers also had to develop new, more pract
  
 ![SAM Structure](images/bam_structure.png) 
 
-**TASK** Open the sam file you generated before (SRR1030347.alignment.sam) with a text editor, and/or type in the terminal window 'head SRR1030347.alignment.sam'. To make it easier to analyse you can copy the contents and paste them in a spreadsheet program.
+**TASK** Open the sam file you generated before (SRR1030347.alignment.sam) with a text editor, and/or type in the terminal window ```head SRR1030347.alignment.sam```. To make it easier to analyse you import the sam file into a spreadsheet program.
 
 **QUESTION**: What is the position of the start of the first alignment in your SAM file? 
 <details><summary>Click Here to see the answer</summary>
@@ -409,7 +409,7 @@ To store millions of alignments, researchers also had to develop new, more pract
 
 SAM files are most often compressed as BAM (Binary SAM) files, to reduce space. These BAM files can then be indexed (do not confuse this indexing with the indexing of the reference genome) to allow direct access to alignments in any arbitrary region of the genome. Several tools only work with BAM files.
 
-**TASK** Let's transform the SAM file into an indexed BAM file. In the same terminal window where you indexed the genome, type 'samtools view -Sb SRR1030347.alignment.sam > SRR1030347.alignment.bam'. To create the index, the alignments in the bam file need to be sorted by position. Type 'samtools sort SRR1030347.alignment.bam  SRR1030347.alignment.sorted'. Finally, we can create the index 'samtools index SRR1030347.alignment.sorted.bam'. Notice now the appearance of a companion file SRR1030347.alignment.sorted.bam.bai that contains the index. This file should always accompany its corresponding bam file.
+**TASK** Let's transform the SAM file into an indexed BAM file. In the same terminal window where you indexed the genome, type ```samtools view -Sb SRR1030347.alignment.sam > SRR1030347.alignment.bam```. To create the index, the alignments in the bam file need to be sorted by position. Type ```samtools sort SRR1030347.alignment.bam  SRR1030347.alignment.sorted```. Finally, we can create the index ```samtools index SRR1030347.alignment.sorted.bam```. Notice now the appearance of a companion file SRR1030347.alignment.sorted.bam.bai that contains the index. This file should always accompany its corresponding bam file.
 
 **TASK** Let's do the whole process using galaxy. Upload the reference genome and the paired fastq files into Galaxy. Check their quality and perform any necessary filtering using trimmomatic or with any of the tools we saw before. Next, perform an alignment with bwa mem of the paired reads (you need to select the option of paired reads) against the reference genome (choose one from history). Next, download the bam file that was created. Also download the companion bai index file (you need to press on the download icon to have the option to download the bam and the bai files). 
 <br/>
@@ -435,7 +435,7 @@ SAM files are most often compressed as BAM (Binary SAM) files, to reduce space. 
 
 After generating alignments and obtaining a SAM/BAM file, how do I know this step went well? The same way as FastQC generates reports of fastq files to assess quality of raw data, there are programs that generate global reports on the quality of alignments. One popular tool for this is [qualimap](http://qualimap.bioinfo.cipf.es/).
 
-**TASK** In the terminal window, in the resequencing folder, type 'qualimap bamqc -bam SRR1030347.alignment.sorted.bam'. Open the report file generated by qualimap (there is a report html inside a new folder that qualimap creates).
+**TASK** In the terminal window, in the resequencing folder, type ```qualimap bamqc -bam SRR1030347.alignment.sorted.bam```. Open the report file generated by qualimap (there is a report html inside a new folder that qualimap creates).
 
 **QUESTION**: What information is in a Qualimap report?
 <details><summary>Click Here to see the answer</summary>
@@ -488,7 +488,7 @@ Many of the plots produced by Qualimap are similar to the ones produced by FastQ
 
 You can also directly visualize the alignments using appropriate software such as [IGV](https://www.broadinstitute.org/igv/) or [Tablet](https://ics.hutton.ac.uk/tablet/). 
 
-**TASK** In the terminal window, type 'igv'. Wait some time, and the IGV browser should appear. First, load the reference genome used for the alignment (load genome NC_000913.3_MG1655.fasta as file). You should see a chromosome of ~4.5Mb appearing, which is the genome size of Escherichia coli. Next, load the file SRR1030347.alignment.sorted.bam and/or the one you downloaded from Galaxy. You should see new tracks appearing in IGV when you load a file. 
+**TASK** In the terminal window, type ```igv```. Wait some time, and the IGV browser should appear. First, load the reference genome used for the alignment (load genome NC_000913.3_MG1655.fasta as file). You should see a chromosome of ~4.5Mb appearing, which is the genome size of Escherichia coli. Next, load the file SRR1030347.alignment.sorted.bam and/or the one you downloaded from Galaxy. You should see new tracks appearing in IGV when you load a file. 
 
 **QUESTION:** Paste in the interval window on the top this position: 'Chromosome:3846244-3846290'. What can you see? 
 <details><summary>Click Here to see the answer</summary>
@@ -536,7 +536,7 @@ You can see two regions where the reads are marked in white, both with slightly 
 
 After aligning reads against a reference genome, you can now see where and how the individual(s) genetic sequence differs from the reference genome. Using IGV, you have detected one mutation (a Single Nucleotide Polymorphism - SNP). To do this in a systematic way, there are specialized tools such as [GATK](https://www.broadinstitute.org/gatk/) and [freebayes](https://github.com/ekg/freebayes) that perform genotype attribution and detection of genetic variants from SAM/BAM alignment files.
 
-**TASK** In the commandline, in the resequencing folder, type 'freebayes -f NC_000913.3_MG1655.fasta SRR1030347.alignment.sorted.bam > SRR1030347.alignment.vcf'. Open the resulting vcf file using a text editor or a spreadsheet.
+**TASK** In the commandline, in the resequencing folder, type ```freebayes -f NC_000913.3_MG1655.fasta SRR1030347.alignment.sorted.bam > SRR1030347.alignment.vcf```. Open the resulting vcf file using a text editor or a spreadsheet.
 
 The current standard for reporting genetic variants is the variat call format ([VCF](https://samtools.github.io/hts-specs/VCFv4.2.pdf)), which is a tabular text based format, where each line contains information about one putative variant detected by the software.
 
@@ -548,7 +548,7 @@ The current standard for reporting genetic variants is the variat call format ([
 
 Sequencing and alignment errors cause many artefactual variants to appear. There are several filtering steps that need to be performed to minimize such errors.
 
-**TASK** In the terminal, type 'freebayes -0 -f NC_000913.3_MG1655.fasta SRR1030347.alignment.sorted.bam > SRR1030347.alignment.high_quality.vcf'. Open the resulting vcf file using a text editor or a spreadsheet.
+**TASK** In the terminal, type ```freebayes -0 -f NC_000913.3_MG1655.fasta SRR1030347.alignment.sorted.bam > SRR1030347.alignment.high_quality.vcf```. Open the resulting vcf file using a text editor or a spreadsheet.
 
 **QUESTION:** How many variants do you find now?
 <details><summary>Click Here to see the answer</summary>
@@ -607,7 +607,7 @@ In the bottom of the page we can see unassigned missing coverage and junction ev
 
 Another very common application of NGS, particularly for bacteria and virus without an assembled genome, is to obtain its complete genome from the assembly of million of short reads. This poses significant computational challenges and novel methods had to be devised to deal with the complexity. The most popular tools use [de-bruijn graphs](https://en.wikipedia.org/wiki/De_Bruijn_graph) to assemble millions of short reads. Although it is becoming much more feasible, assembly is still a very computer intensive process that needs to be run in powerful servers for most cases (particularly in longer and repeat-rich eukaryote genomes). [Spades](http://cab.spbu.ru/software/spades/) (mostly for bacteria) and [sga](https://github.com/jts/sga/wiki) (for longer eukaryote genomes) are examples of popular assemblers.
 
-**TASK**: In the terminal, move to the resequencing folder and type 'spades.py -1 SRR1030347_1.fastq.interval.fq -2 SRR1030347_2.fastq.interval.fq  -o SRR1030347_spades'. After spades finishing successfully, there should be a folder SRR1030347_spades. Inside the folder you should have a scaffolds.fasta file.
+**TASK**: In the terminal, move to the resequencing folder and type ```spades.py -1 SRR1030347_1.fastq.interval.fq -2 SRR1030347_2.fastq.interval.fq  -o SRR1030347_spades```. After spades finishing successfully, there should be a folder SRR1030347_spades. Inside the folder you should have a scaffolds.fasta file.
 
 **QUESTION**: What's in scaffolds.fasta file? 
 <details><summary>Click Here to see the answer</summary>
