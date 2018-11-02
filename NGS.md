@@ -331,7 +331,7 @@ You can perform the following operations with Trimmomatic (either isolated, or i
 <br/>
 
 
-**TASK**: Let's use Trimmomatic in Galaxy to remove low quality bases from MiSeq_250bp.fastq.gz, as well as the remainings of illumina Nextera adaptors that are still left in some of the reads. This fastq file is in the commonly used Phred score, so you can change its file type to 'fastqsanger'. Now Trimmomatic should find it. Let's perform the default operation "Sliding Window" of size 4 and average quality 20. Let's also remove the adaptors. For this, select 'Yes' on 'Perform initial ILLUMINACLIP step'. The select "Nextera (paired end)" and leave the rest of the parameters as they were. Finally, you can click on Execute.
+**TASK**: Let's use Trimmomatic in Galaxy to remove low quality bases from MiSeq_250bp.fastq.gz, as well as the remainings of illumina Nextera adaptors that are still left in some of the reads. Now Trimmomatic should find it. Let's perform the default operation "Sliding Window" of size 4 and average quality 20. Let's also remove the adaptors. For this, select 'Yes' on 'Perform initial ILLUMINACLIP step'. The select "Nextera (paired end)" and leave the rest of the parameters as they were. Finally, you can click on Execute.
 
 **QUESTION**: What happened? To answer, use FastQC on the fastq output by Trimmomatic. 
 <details><summary>Click Here to see the answer</summary>
@@ -341,7 +341,7 @@ You can perform the following operations with Trimmomatic (either isolated, or i
 <br/>
 
 
-**TASK**: Let's use Trimmomatic in Galaxy with a paired-end dataset. Upload the files paired_end_example_1.fastq.gz and paired_end_example_2.fastq.gz. Change their types to 'fastqsanger'. In Trimmomatic, select 'Paired-end (two separate input file)'. Perform the same operations as before.
+**TASK**: Let's use Trimmomatic in Galaxy with a paired-end dataset. Upload the files paired_end_example_1.fastq.gz and paired_end_example_2.fastq.gz. In Trimmomatic, select 'Paired-end (two separate input file)'. Perform the same operations as before.
 
 <br/>
 
