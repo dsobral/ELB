@@ -331,11 +331,11 @@ You can perform the following operations with Trimmomatic (either isolated, or i
 <br/>
 
 
-**TASK**: Let's use Trimmomatic in Galaxy to remove low quality bases from MiSeq_250bp.fastq.gz, as well as the remainings of illumina Nextera adaptors that are still left in some of the reads. Now Trimmomatic should find it. Let's perform the default operation "Sliding Window" of size 4 and average quality 20. Let's also remove the adaptors. For this, select 'Yes' on 'Perform initial ILLUMINACLIP step'. The select "Nextera (paired end)" and leave the rest of the parameters as they were. Finally, you can click on Execute.
+**TASK**: Let's use Trimmomatic in Galaxy to remove low quality bases from MiSeq_250bp.fastq.gz, as well as the remainings of illumina Nextera adaptors that are still left in some of the reads. Now Trimmomatic should find it. Let's perform the default operation "SLIDINGWINDOW" of size 4 and average quality 20, and then also the operation "MINLEN" using 36 as the minimum length. Let's also remove the adaptors. For this, select 'Yes' on 'Perform initial ILLUMINACLIP step'. Then select "Nextera (paired end)" and leave the rest of the parameters as they were. Finally, click on Execute.
 
 **QUESTION**: What happened? To answer, use FastQC on the fastq output by Trimmomatic. 
 <details><summary>Click Here to see the answer</summary>
-	The base quality distribution improved. Moreover, the few Nextera primers in the end of the reads also disappeared. Nonetheless, read length is now shortened, and we have fewer reads than before.
+	The base quality distribution improved. Moreover, the few Nextera primers in the end of the reads also disappeared. Nonetheless, read length is now a range, and we have fewer and shorter reads than before.
 </details>
 <br/>
 <br/>
@@ -399,9 +399,9 @@ To store millions of alignments, researchers also had to develop new, more pract
  
 ![SAM Structure](images/bam_structure.png) 
 
-**TASK** Open the sam file you generated before (SRR1030347.alignment.sam) with a text editor, and/or type in the terminal window ```head SRR1030347.alignment.sam```. To make it easier to analyse you import the sam file into a spreadsheet program.
+**TASK** Open the sam file you generated before (SRR1030347.alignment.sam) with a text editor, and/or type in the terminal window ```head SRR1030347.alignment.sam```. To make it easier to analyse import the sam file into a spreadsheet program.
 
-**QUESTION**: What is the position of the start of the first alignment in your SAM file? 
+**QUESTION**: What is the position of the start of the first alignment in your SAM file?  
 <details><summary>Click Here to see the answer</summary>
 	Read SRR1030347.285 aligns starting in position 14 (information in the 4th column of the SAM).
 </details>
@@ -411,7 +411,7 @@ SAM files are most often compressed as BAM (Binary SAM) files, to reduce space. 
 
 **TASK** Let's transform the SAM file into an indexed BAM file. In the same terminal window where you indexed the genome, type ```samtools view -Sb SRR1030347.alignment.sam > SRR1030347.alignment.bam```. To create the index, the alignments in the bam file need to be sorted by position. Type ```samtools sort SRR1030347.alignment.bam  SRR1030347.alignment.sorted```. Finally, we can create the index ```samtools index SRR1030347.alignment.sorted.bam```. Notice now the appearance of a companion file SRR1030347.alignment.sorted.bam.bai that contains the index. This file should always accompany its corresponding bam file.
 
-**TASK** Let's do the whole process using galaxy. Upload the reference genome and the paired fastq files into Galaxy. Check their quality and perform any necessary filtering using trimmomatic or with any of the tools we saw before. Next, perform an alignment with bwa mem of the paired reads (you need to select the option of paired reads) against the reference genome (choose one from history). Next, download the bam file that was created. Also download the companion bai index file (you need to press on the download icon to have the option to download the bam and the bai files). 
+**TASK** Let's do the whole process using galaxy. Upload the reference genome NC_000913.3_MG1655.fasta and the paired fastq files SRR1030347_1.fastq.interval.fq and SRR1030347_2.fastq.interval.fq into Galaxy. Check the fastq quality and perform any necessary filtering using trimmomatic or with any of the tools we saw before. Next, perform an alignment with bwa mem of the paired reads (you need to select the option of paired reads) against the reference genome (choose one from history). Next, download the bam file that was created. Also download the companion bai index file (you need to press on the download icon to have the option to download the bam and the bai files). 
 <br/>
 <br/>
 
